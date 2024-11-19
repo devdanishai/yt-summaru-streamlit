@@ -1,0 +1,19 @@
+# Ignore the .env file (environment variables)
+.env
+
+.idea/
+
+# Ignore Python bytecode files
+__pycache__/
+*.py[cod]
+
+# Ignore virtual environment directories
+venv/
+ENV/
+env/
+
+# Ignore Streamlit config and cache folders
+.streamlit/
+
+# Ignore log files
+*.log

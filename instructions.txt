@@ -1,0 +1,9 @@
+my_project/
+│
+├── .env               # Environment variables file (API keys, secrets, etc.)
+├── .gitignore         # Git ignore file to exclude sensitive data
+├── app.py             # Your main Streamlit app file
+├── requirements.txt   # Python dependencies
+├── .streamlit/        # Streamlit config files (optional)
+└── other_files/       # Other files and folders
+
