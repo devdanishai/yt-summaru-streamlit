@@ -7,3 +7,4 @@ my_project/
 ├── .streamlit/        # Streamlit config files (optional)
 └── other_files/       # Other files and folders
 
+streamlit run app.py

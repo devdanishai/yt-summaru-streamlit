@@ -1,3 +1,4 @@
+#python==3.11
 youtube_transcript_api
 streamlit
 google-generativeai
