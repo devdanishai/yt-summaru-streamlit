@@ -2,27 +2,34 @@ name: Daily Green Commit
 
 on:
   schedule:
-    - cron: "0 7 * * *"  # Runs daily at 07:00 UTC
-  workflow_dispatch:      # Allows manual trigger
+    - cron: "0 7 * * *"  # Runs daily at 07:00 UTC (12:00 PM PKT)
+  workflow_dispatch:      # Allows manual trigger from Actions tab
 
 jobs:
   green_commit:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write      # Required for pushing commits
+    
     steps:
       # Step 1: Checkout the repository
-      - uses: actions/checkout@v3
-
-      # Step 2: Create/update a file (optional, can be empty commit)
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      # Step 2: Create/update a file
       - name: Create/update green.txt
         run: |
-          echo "Daily green commit $(date -u)" > green.txt
-
+          echo "Daily green commit - $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> green.txt
+          echo "Commit #$(git rev-list --count HEAD)" >> green.txt
+          echo "---" >> green.txt
+      
       # Step 3: Commit and push changes
-      - name: Commit & push
+      - name: Commit and push
         run: |
-          git config --global user.email "global998877@gmail.com"
-          git config --global user.name "devdanishai"
+          git config --local user.email "global998877@gmail.com"
+          git config --local user.name "devdanishai"
           git add green.txt
-          git commit -m "Green commit: $(date -u)" --allow-empty
-          git push 
-
+          git commit -m "🟢 Daily commit: $(date -u '+%Y-%m-%d')" --allow-empty
+          git push
