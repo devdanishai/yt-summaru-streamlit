@@ -2,7 +2,7 @@ name: Daily Green Commit
 
 on:
   schedule:
-    - cron: "0 7 * * *"  # Runs daily at 07:00 UTC (12:00 PM PKT)
+    - cron: "0 2 * * *"  # Runs daily at 07:00 UTC (12:00 PM PKT)
   workflow_dispatch:      # Allows manual trigger from Actions tab
 
 jobs:
