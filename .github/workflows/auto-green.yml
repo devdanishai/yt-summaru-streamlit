@@ -1,0 +1,22 @@
+name: Daily Green Commit
+
+on:
+  schedule:
+    - cron: "0 7 * * *"  # Runs daily at 07:00 UTC
+  workflow_dispatch:
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Create/update green.txt
+        run: |
+          echo "Last update: $(date -u)" > green.txt
+      - name: Commit & push
+        run: |
+          git config --global user.email "global998877@gmail.com"
+          git config --global user.name "devdanishai"
+          git add green.txt
+          git commit -m "Green commit: $(date -u)" --allow-empty
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
